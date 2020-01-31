@@ -1,0 +1,83 @@
+/* prefixed by https://autoprefixer.github.io (PostCSS: v7.0.26, autoprefixer: v9.7.3) */
+
+  #leftarrow i, #rightarrow i, .sliderTitle{
+    color: #920623;
+    /*change color of arrows and slider title here*/
+  }
+  .sliderTitle{
+    font-size: 24px;
+    /*change font size of slider title here*/
+  }
+  .companyIcons{
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    width: 60%;
+    /*change width of slider here*/
+  }
+  #companyCarousel{
+    overflow: hidden;
+    position: relative;
+    height: 220px; /*change height of slider here*/
+  }
+  #leftarrow{
+    left: 10%;
+  }
+  #rightarrow{
+    right: 10%;
+  }
+  #leftarrow, #rightarrow{
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+  }
+  #slider{
+  margin-top: 30px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 30px;
+  position: relative;
+}
+.companyIcons img{
+  height: auto;
+  width: 90%;
+  margin: auto;
+}
+.carouselEl{
+  width: 35%;
+  background-color: #ffffffd1;
+  border-radius: 20px;
+  height: 100%;
+}
+.companyCarousel{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+}
+#companyTrack{
+  position: absolute;
+  top:0px;
+  left: 0px;
+  height: 100%;
+}
+.flex{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.flexcenter{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
