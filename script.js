@@ -1,7 +1,8 @@
-
 var actualMove=-1; //Don't change!
 var reload=1; //Don't change!
 var direction = "left"; //Don't change!
+var status="open";
+var move;
 
 //checking if mouse is on slider
 var mouseOnSlider = false;
@@ -43,8 +44,9 @@ function companyCarousel(){
   var moveRange = elQty - visibleElQty;
 
   clearInterval(move);
+  move=false;
   // function moving elements
-  var move = setInterval(function(){
+  move = setInterval(function(){
     if(mouseOnSlider==false){
        if(actualMove==moveRange){
          direction = "right";
@@ -60,40 +62,13 @@ function companyCarousel(){
          }
        }
      }, 2500);
-     //Function making slider responsive (resize)
-       function resizedw(){
-         clearInterval(move);
-         actualMove=-1;
-         direction = "left";
-         companyCarousel();
-      }
-      var doit;
-      // onresize event
-      window.onresize = function(){
-        clearTimeout(doit);
-        reload=1;
-        doit = setTimeout(resizedw, 900);
-      };
-
-      // if you minimalize site and then go back to it this function will reset interval
-      var status ="open";
-      document.onvisibilitychange = function() {
-        if(status=="open"){
-          status="closed";
-          clearInterval(move);
-        }if(status=="closed"){
-          status = "open";
-          direction = "left";
-          actualMove=-1;
-          reload=1;
-          companyCarousel();
-        }
-      };
+      status ="open";
 
       //arrows event
       document.getElementById("leftarrow").onclick = function(){
         if(actualMove>0){
           clearInterval(move);
+          move=false;
           document.getElementById("companyTrack").style.left=document.getElementById("companyTrack").offsetLeft+elWidth+"px";
           actualMove-=1;
           reload=0;
@@ -103,6 +78,7 @@ function companyCarousel(){
       document.getElementById("rightarrow").onclick = function(){
         if (actualMove<moveRange){
           clearInterval(move);
+          move=false;
           document.getElementById("companyTrack").style.left=document.getElementById("companyTrack").offsetLeft-elWidth+"px";
           actualMove+=1;
           reload=0;
@@ -111,4 +87,34 @@ function companyCarousel(){
       }
 
   }
+  //Function making slider responsive (resize)
+  function resizedw(){
+    clearInterval(move);
+    move=false;
+    actualMove=-1;
+    direction = "left";
+    companyCarousel();
+ }
+   var doit;
+   // onresize event
+   window.addEventListener("resize", function(){
+     clearTimeout(doit);
+     reload=1;
+     doit = setTimeout(resizedw, 900);
+   });
+
+  // if you minimalize site and then go back to it this function will reset interval
+  document.addEventListener("visibilitychange",  function() {
+    if(document.hidden==true){
+      status="closed";
+      clearInterval(move);
+      move=false;
+    }if(document.hidden==false && move==false){
+      status = "open";
+      direction = "left";
+      actualMove=-1;
+      reload=1;
+      companyCarousel();
+    }
+  });
 companyCarousel();
